@@ -37,7 +37,7 @@ public class complexNumbersAndPolarCoordinates {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
-            "\n" + "Please input your rectangular equation (write it in the form a+bi)"
+            "\n" + "Please input your rectangular equation (Write it in the form a+bi)"
         );
 
         String[] rectangularEquation = (scanner.nextLine()).split("[+i]");
@@ -117,9 +117,6 @@ public class complexNumbersAndPolarCoordinates {
             
         }
 
-        
-        
-
         scanner.close();
     }
 
@@ -128,7 +125,7 @@ public class complexNumbersAndPolarCoordinates {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
-            "\n" + "Please input your rectangular equation (write it in the form a+bi)"
+            "\n" + "Please input your rectangular equation (Write it in the form a+bi)"
         );
 
         String[] rectangularToPolar = (scanner.nextLine()).split("[+i]");
