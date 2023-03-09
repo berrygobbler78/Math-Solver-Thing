@@ -86,11 +86,11 @@ public class complexNumbersAndPolarCoordinates {
         if (roundedOrExact.equals("1")) {
             if (Math.sin(x) < 0) {
                 System.out.println(
-                    "\n" + (r * Math.cos(x)) + "-i" + -( r * Math.sin(x))
+                    "\n" + (r * Math.cos(x)) + "- i" + -( r * Math.sin(x))
                 );
             } else {
                 System.out.println(
-                    "\n" + (r * Math.cos(x)) + "+i" + ( r * Math.sin(x))
+                    "\n" + (r * Math.cos(x)) + "+ i" + ( r * Math.sin(x))
                 );
             }
         } else if (roundedOrExact.equals("2")) {
@@ -107,11 +107,11 @@ public class complexNumbersAndPolarCoordinates {
 
             if (sinDecimal < 1.0 ) {
                 System.out.println(
-                    "\n" + cosDecimal + "-i" + -sinDecimal
+                    "\n" + cosDecimal + "- i" + -sinDecimal
                 );
             } else {
                 System.out.println(
-                    "\n" + cosDecimal + "+i" + sinDecimal
+                    "\n" + cosDecimal + "+ i" + sinDecimal
                 );
             }
             
@@ -143,9 +143,16 @@ public class complexNumbersAndPolarCoordinates {
         String roundedOrExact = scanner.nextLine();
 
         if(roundedOrExact.equals("1")) {
-            System.out.println(
-                "\n" + modulus + "cos(" + arcTan + ") + isin(" + arcTan + ")"
-            );
+            if(b < 0) {
+                System.out.println(
+                    "\n" + modulus + "cos(" + (arcTan + 180) + ") + isin(" + (arcTan + 180) + ")"
+                );
+            } else {
+                System.out.println(
+                    "\n" + modulus + "cos(" + arcTan + ") + isin(" + arcTan + ")"
+                );
+            }
+            
         } else if(roundedOrExact.equals("2")) { 
 
             MathContext modulusMathContext = new MathContext(2 + (Double.toString(modulus)).indexOf("."));
@@ -153,10 +160,17 @@ public class complexNumbersAndPolarCoordinates {
 
             BigDecimal modulusDecimal = (BigDecimal.valueOf(modulus)).round(modulusMathContext);
             BigDecimal arcTanDecimal = (BigDecimal.valueOf(arcTan)).round(arcTanMathContext);
-
-            System.out.println(
-                "\n" + modulusDecimal + "cos(" + arcTanDecimal + ") + isin(" + arcTanDecimal + ")"
-            );
+            
+            if(b < 0) {
+                System.out.println(
+                    "\n" + modulusDecimal + "cos(" + (arcTanDecimal.doubleValue() + 180) + ") + isin(" + (arcTanDecimal.doubleValue() + 180) + ")"
+                );
+            } else {
+                System.out.println(
+                    "\n" + modulusDecimal + "cos(" + arcTanDecimal + ") + isin(" + arcTanDecimal + ")"
+                );
+            }
+            
         } else {
             System.out.println(
                 "\n" + "Not a valid answer numbnuts"
