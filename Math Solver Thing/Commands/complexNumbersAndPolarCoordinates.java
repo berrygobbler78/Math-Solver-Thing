@@ -69,7 +69,7 @@ public class complexNumbersAndPolarCoordinates {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
-            "\n" + "Please input your polar equation (write it in the form r(cos(x)+isin(y))"
+            "\n" + "Please input your polar equation (Write it in the form r(cos(x)+isin(x) where x is degrees)"
         );
 
         String[] polarToRectangular = (scanner.nextLine()).split("[)()]");
@@ -86,37 +86,33 @@ public class complexNumbersAndPolarCoordinates {
         if (roundedOrExact.equals("1")) {
             if (Math.sin(x) < 0) {
                 System.out.println(
-                    "\n" + (r * Math.cos(x)) + "- i" + -( r * Math.sin(x))
+                    "\n" + (r * Math.cos(Math.toRadians(x))) + "- i" + -( r * Math.sin(Math.toRadians(x)))
                 );
             } else {
                 System.out.println(
-                    "\n" + (r * Math.cos(x)) + "+ i" + ( r * Math.sin(x))
+                    "\n" + (r * Math.cos(Math.toRadians(x))) + "+ i" + ( r * Math.sin(Math.toRadians(x)))
                 );
             }
         } else if (roundedOrExact.equals("2")) {
-            
-            Double cos = Math.cos(x) * r;
-            Double sin = Math.sin(x) * r;
+            Double cos = Math.cos(Math.toRadians(x)) * r;
+            Double sin = Math.sin(Math.toRadians(x)) * r;
 
             MathContext cosMathContext = new MathContext(1 + (Double.toString(cos)).indexOf("."));
             MathContext sinMathContext = new MathContext(1 + (Double.toString(sin)).indexOf("."));
 
             BigDecimal cosDecimal = (BigDecimal.valueOf(cos)).round(cosMathContext);
-
             Double sinDecimal = ((BigDecimal.valueOf(sin)).round(sinMathContext)).doubleValue();
 
-            if (sinDecimal < 1.0 ) {
+            if (sinDecimal < 1 ) {
                 System.out.println(
-                    "\n" + cosDecimal + "- i" + -sinDecimal
+                    "\n" + cosDecimal + " - i" + -sinDecimal
                 );
             } else {
                 System.out.println(
-                    "\n" + cosDecimal + "+ i" + sinDecimal
+                    "\n" + cosDecimal + " + i" + sinDecimal
                 );
             }
-            
         }
-
         scanner.close();
     }
 
