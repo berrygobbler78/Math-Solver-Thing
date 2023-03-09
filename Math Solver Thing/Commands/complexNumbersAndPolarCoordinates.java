@@ -14,7 +14,7 @@ public class complexNumbersAndPolarCoordinates {
             "1. Rectangular function to polar function" + "\n" + 
             "2. Polar function to rectangular function" + "\n" +
             "3. Find the modulus"
-            );
+        );
 
         String operationType = scanner.nextLine();
 
@@ -23,29 +23,101 @@ public class complexNumbersAndPolarCoordinates {
         } else if(operationType.equals("2")) {
             polarToRectangular();
         } else if(operationType.equals("3")) {
+            findModulus();
+        } else {
+            System.out.println(
+                "\n" + "Not a valid answer numbnuts"
+            );
+        } 
 
+        scanner.close();
+    }
+
+    public static void findModulus() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(
+            "\n" + "Please input your rectangular equation (write it in the form a+bi)"
+        );
+
+        String[] rectangularEquation = (scanner.nextLine()).split("[+i]");
+        
+        Double a = Double.parseDouble(rectangularEquation[0]);
+        Double b = Double.parseDouble(rectangularEquation[1]);
+
+        System.out.println(
+            "\n" + "Would you like an exact or rounded answer? (1 or 2)"
+        );
+
+        String roundedOrExact = scanner.nextLine();
+
+        if (roundedOrExact.equals("1")) {
+            System.out.println(Math.sqrt((a*a)+(b*b)));
+        } else if (roundedOrExact.equals("2")) {
+            MathContext answerMathContext = new MathContext(1 + (Double.toString(Math.sqrt((a*a)+(b*b)))).indexOf("."));
+
+            Double answer = ((BigDecimal.valueOf(Math.sqrt((a*a)+(b*b)))).round(answerMathContext)).doubleValue();
+
+            System.out.println(answer); 
         }
+        
 
         scanner.close();
     }
 
     public static void polarToRectangular() {
-        final double pi = 3.14159265358979323846;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
             "\n" + "Please input your polar equation (write it in the form r(cos(x)+isin(y))"
-            );
+        );
 
         String[] polarToRectangular = (scanner.nextLine()).split("[)()]");
 
         Double r = Double.parseDouble(polarToRectangular[0]);
         Double x = Double.parseDouble(polarToRectangular[2]);
 
-        Double p1 = r * Math.cos(x);
-        Double p2 = r * Math.sin(x);
+        System.out.println(
+            "\n" + "Would you like an exact or rounded answer? (1 or 2)"
+        );
+    
+        String roundedOrExact = scanner.nextLine();
+        
+        if (roundedOrExact.equals("1")) {
+            if (Math.sin(x) < 0) {
+                System.out.println(
+                    "\n" + (r * Math.cos(x)) + "-i" + -( r * Math.sin(x))
+                );
+            } else {
+                System.out.println(
+                    "\n" + (r * Math.cos(x)) + "+i" + ( r * Math.sin(x))
+                );
+            }
+        } else if (roundedOrExact.equals("2")) {
+            
+            Double cos = Math.cos(x) * r;
+            Double sin = Math.sin(x) * r;
 
-        System.out.println((r * Math.cos(x)) + "+i" +  );
+            MathContext cosMathContext = new MathContext(1 + (Double.toString(cos)).indexOf("."));
+            MathContext sinMathContext = new MathContext(1 + (Double.toString(sin)).indexOf("."));
+
+            BigDecimal cosDecimal = (BigDecimal.valueOf(cos)).round(cosMathContext);
+
+            Double sinDecimal = ((BigDecimal.valueOf(sin)).round(sinMathContext)).doubleValue();
+
+            if (sinDecimal < 1.0 ) {
+                System.out.println(
+                    "\n" + cosDecimal + "-i" + -sinDecimal
+                );
+            } else {
+                System.out.println(
+                    "\n" + cosDecimal + "+i" + sinDecimal
+                );
+            }
+            
+        }
+
+        
         
 
         scanner.close();
@@ -57,7 +129,7 @@ public class complexNumbersAndPolarCoordinates {
 
         System.out.println(
             "\n" + "Please input your rectangular equation (write it in the form a+bi)"
-            );
+        );
 
         String[] rectangularToPolar = (scanner.nextLine()).split("[+i]");
         
@@ -68,18 +140,16 @@ public class complexNumbersAndPolarCoordinates {
         Double arcTan = Math.atan(b / a) * 180 / pi;
         
         System.out.println(
-            "\n" + "Would you like an exact or rounded answer? (1 or 2)" +
-            );
+            "\n" + "Would you like an exact or rounded answer? (1 or 2)"
+        );
 
         String roundedOrExact = scanner.nextLine();
 
         if(roundedOrExact.equals("1")) {
             System.out.println(
                 "\n" + modulus + "cos(" + arcTan + ") + isin(" + arcTan + ")"
-                );
-        }
-
-        else if(roundedOrExact.equals("2")) { 
+            );
+        } else if(roundedOrExact.equals("2")) { 
 
             MathContext modulusMathContext = new MathContext(2 + (Double.toString(modulus)).indexOf("."));
             MathContext arcTanMathContext = new MathContext(2 + (Double.toString(arcTan)).indexOf("."));
@@ -89,11 +159,11 @@ public class complexNumbersAndPolarCoordinates {
 
             System.out.println(
                 "\n" + modulusDecimal + "cos(" + arcTanDecimal + ") + isin(" + arcTanDecimal + ")"
-                );
+            );
         } else {
             System.out.println(
-                "\n" + "You are an idiot. Try again."
-                );
+                "\n" + "Not a valid answer numbnuts"
+            );
         } 
 
         scanner.close();
