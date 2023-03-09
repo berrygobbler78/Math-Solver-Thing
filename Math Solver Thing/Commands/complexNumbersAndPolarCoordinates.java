@@ -155,8 +155,8 @@ public class complexNumbersAndPolarCoordinates {
             
         } else if(roundedOrExact.equals("2")) { 
 
-            MathContext modulusMathContext = new MathContext(2 + (Double.toString(modulus)).indexOf("."));
-            MathContext arcTanMathContext = new MathContext(2 + (Double.toString(arcTan)).indexOf("."));
+            MathContext modulusMathContext = new MathContext(1 + (Double.toString(modulus)).indexOf("."));
+            MathContext arcTanMathContext = new MathContext(1 + (Double.toString(arcTan)).indexOf("."));
 
             BigDecimal modulusDecimal = (BigDecimal.valueOf(modulus)).round(modulusMathContext);
             BigDecimal arcTanDecimal = (BigDecimal.valueOf(arcTan)).round(arcTanMathContext);
