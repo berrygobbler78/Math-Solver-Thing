@@ -1,0 +1,16 @@
+public class commandFormat {
+    public static void commandFormatStart() {
+        try {
+            commandFormatRun();
+        } catch (NumberFormatException e) {
+            System.out.println("\nYou formatted the reponse wrong. Try again.");
+            commandFormatRun();
+        } catch (Exception e) {
+            System.out.println("\nReport bug for Exception:" + e);
+        }
+    }
+
+    public static void commandFormatRun() {
+        //Stuff here
+    }
+}
